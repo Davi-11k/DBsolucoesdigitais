@@ -39,6 +39,11 @@ h1 span{color:var(--gold)}.lead{font-size:1.15rem;color:#c4cbd4;max-width:540px}
 .pix{border:1px solid var(--gold);border-radius:16px;padding:13px;margin-top:13px;background:linear-gradient(145deg,#1a1706,#080a0d)}
 .pix h3{margin:0 0 8px;color:var(--gold);font-size:.95rem}.pixkey{font-size:.77rem;color:#d9e0e8;overflow-wrap:anywhere;margin:7px 0}
 .copy{width:100%;border:0;border-radius:10px;padding:10px;background:var(--gold);font-weight:850;color:#181300;margin-top:8px}
+.pix-qr{margin-top:15px;padding:13px 10px 10px;border:1px solid #3b4652;border-radius:13px;background:#f8fafc;color:#101820;text-align:center}
+.pix-qr-title{font-size:.82rem;font-weight:850;margin-bottom:10px;color:#101820}
+.pix-qr-image{display:flex;justify-content:center;align-items:center;min-height:190px}
+.pix-qr-image img,.pix-qr-image canvas{display:block;max-width:100%;height:auto!important}
+.pix-qr-hint{font-size:.7rem;line-height:1.45;color:#475569;margin:9px 0 0}
 .safe{font-size:.69rem;text-align:center;color:#c9d0d8;margin:9px 0 0}
 section{padding:48px 0}.section-title{text-align:center;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-.04em;margin:0 0 10px}.section-sub{text-align:center;color:var(--muted);max-width:650px;margin:0 auto 30px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -94,7 +99,12 @@ footer{padding:28px 0 38px;color:#9ba6b2;font-size:.86rem;text-align:center}
         <div style="font-weight:800">PIX</div>
         <div class="pixkey">Chave Pix: <b id="pixKey">david.nubenk.pix@gmail.com</b></div>
         <button class="copy" type="button" onclick="copyPix()">Copiar chave Pix</button>
-        <p class="safe">🔒 Pagamento via Pix. Confirme os dados no aplicativo do seu banco.</p>
+        <div class="pix-qr">
+          <div class="pix-qr-title">Ou pague escaneando o QR Code</div>
+          <div id="pixQrCode" class="pix-qr-image" role="img" aria-label="QR Code Pix para pagamento"></div>
+          <p class="pix-qr-hint">Abra o aplicativo do seu banco e escolha pagar com Pix QR Code. O valor poderá ser informado no banco.</p>
+        </div>
+        <p class="safe">🔒 Confira o nome do destinatário antes de confirmar o pagamento.</p>
       </div>
       <p style="text-align:center;color:#aeb8c4;font-size:.7rem;margin:14px 0 0">Acesse minhas redes e acompanhe meu trabalho</p>
     </div>
@@ -155,7 +165,45 @@ footer{padding:28px 0 38px;color:#9ba6b2;font-size:.86rem;text-align:center}
 <footer>David Andrade Barbosa · Votorantim – SP<br><span style="color:#687582">Cartão Digital Profissional</span></footer>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite">Chave Pix copiada!</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
+function pixField(id,value){
+ return id+String(value.length).padStart(2,'0')+value;
+}
+function pixCrc16(payload){
+ let crc=0xFFFF;
+ for(let i=0;i<payload.length;i++){
+  crc^=payload.charCodeAt(i)<<8;
+  for(let bit=0;bit<8;bit++) crc=(crc&0x8000)?((crc<<1)^0x1021):(crc<<1);
+ }
+ return (crc&0xFFFF).toString(16).toUpperCase().padStart(4,'0');
+}
+function buildPixPayload(key){
+ const merchantInfo=pixField('00','BR.GOV.BCB.PIX')+pixField('01',key);
+ const additional=pixField('05','***');
+ const base=pixField('00','01')+
+  pixField('26',merchantInfo)+
+  pixField('52','0000')+
+  pixField('53','986')+
+  pixField('58','BR')+
+  pixField('59','DAVID ANDRADE BARBOSA')+
+  pixField('60','VOTORANTIM')+
+  pixField('62',additional)+
+  '6304';
+ return base+pixCrc16(base);
+}
+function renderPixQr(){
+ const target=document.getElementById('pixQrCode');
+ const key=document.getElementById('pixKey').textContent.trim();
+ if(!target || typeof QRCode==='undefined'){
+  if(target) target.textContent='Não foi possível carregar o QR Code. Use a opção de copiar a chave Pix.';
+  return;
+ }
+ target.innerHTML='';
+ new QRCode(target,{text:buildPixPayload(key),width:190,height:190,colorDark:'#07111f',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+}
+renderPixQr();
+
 async function copyPix(){
  const key=document.getElementById('pixKey').textContent.trim();
  try{
