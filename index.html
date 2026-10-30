@@ -14,7 +14,9 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
 header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid #252d37}
 .brand{font-weight:850;letter-spacing:.02em}.brand span{color:var(--gold)}
 nav{display:flex;gap:22px;color:#d2d9e1;font-size:.93rem}nav a:hover{color:var(--gold)}
-.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;padding:66px 0 56px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;padding:66px 0 56px;position:relative;isolation:isolate;overflow:hidden;border-radius:24px}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,9,12,.92),rgba(7,9,12,.68));z-index:-1;pointer-events:none}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
 .eyebrow{color:var(--gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:.76rem}
 h1{font-size:clamp(2.6rem,6vw,5rem);line-height:.98;letter-spacing:-.055em;margin:16px 0 18px}
 h1 span{color:var(--gold)}.lead{font-size:1.15rem;color:#c4cbd4;max-width:540px}
@@ -65,6 +67,7 @@ footer{padding:28px 0 38px;color:#9ba6b2;font-size:.86rem;text-align:center}
 
 <main id="top">
 <section class="hero">
+<video class="hero-video" id="heroVideo" autoplay muted loop playsinline aria-hidden="true"></video>
   <div>
     <div class="eyebrow">Cartão digital profissional</div>
     <h1>Seu trabalho<br>merece ser <span>visto.</span></h1>
@@ -161,6 +164,26 @@ async function copyPix(){
   const t=document.createElement('textarea');t.value=key;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();
  }
  const toast=document.getElementById('toast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200);
+}
+
+const heroVideo=document.getElementById('heroVideo');
+const desktopHeroVideo='./Man_programming_digital_card_tim…_363c2f3a.mp4';
+const mobileHeroVideo='./Man_programming_digital_business…_c50424d5.mp4';
+const mobileHeroQuery=window.matchMedia('(max-width: 800px)');
+function setHeroVideo(){
+ const nextVideo=mobileHeroQuery.matches?mobileHeroVideo:desktopHeroVideo;
+ if(heroVideo.getAttribute('src')!==nextVideo){
+  heroVideo.src=nextVideo;
+  heroVideo.load();
+  const playPromise=heroVideo.play();
+  if(playPromise && typeof playPromise.catch==='function') playPromise.catch(()=>{});
+ }
+}
+setHeroVideo();
+if(typeof mobileHeroQuery.addEventListener==='function'){
+ mobileHeroQuery.addEventListener('change',setHeroVideo);
+}else{
+ mobileHeroQuery.addListener(setHeroVideo);
 }
 </script>
 </body>
