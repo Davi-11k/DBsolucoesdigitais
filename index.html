@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080a0d">
+<meta name="description" content="Cartão Digital Profissional — seu trabalho merece ser visto.">
+<title>Cartão Digital Profissional | David Andrade Barbosa</title>
+<style>
+:root{--bg:#07090c;--panel:#10151b;--panel2:#151c24;--gold:#ffd51d;--green:#00c982;--blue:#087cf0;--muted:#aeb8c4;--white:#f8fafc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% 0%,#172331 0,transparent 38%),var(--bg);color:var(--white);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid #252d37}
+.brand{font-weight:850;letter-spacing:.02em}.brand span{color:var(--gold)}
+nav{display:flex;gap:22px;color:#d2d9e1;font-size:.93rem}nav a:hover{color:var(--gold)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;padding:66px 0 56px}
+.eyebrow{color:var(--gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:.76rem}
+h1{font-size:clamp(2.6rem,6vw,5rem);line-height:.98;letter-spacing:-.055em;margin:16px 0 18px}
+h1 span{color:var(--gold)}.lead{font-size:1.15rem;color:#c4cbd4;max-width:540px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 19px;border-radius:999px;font-weight:800;border:1px solid transparent;transition:.2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.primary{background:linear-gradient(110deg,#00d58a,#00a96d);color:#03130d}.outline{border-color:#56616d;background:#10161d;color:white}
+.gold{background:var(--gold);color:#171300}
+.hero-note{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;color:#cbd3dc;font-size:.92rem}
+.hero-note span{display:flex;align-items:center;gap:8px}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}
+.phone-area{display:flex;justify-content:center;position:relative}
+.phone{width:min(350px,100%);border:8px solid #242a31;border-radius:42px;background:#05070a;padding:22px 17px 18px;box-shadow:0 25px 70px #000b,0 0 0 2px #68717c;position:relative}
+.phone:before{content:"";position:absolute;width:92px;height:18px;background:#020305;border-radius:0 0 14px 14px;top:0;left:50%;transform:translateX(-50%)}
+.status{display:flex;justify-content:space-between;font-size:.72rem;color:#e8edf2;margin-bottom:20px}
+.profile{text-align:center;padding:12px 0 18px;border-bottom:1px solid #242c35}
+.avatar{width:82px;height:82px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);display:block;margin:0 auto 10px}
+.profile h2{font-size:1.1rem;margin:4px 0}.profile p{margin:2px 0;color:#c1cad4;font-size:.79rem}
+.phone-btn{display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:15px;margin-top:11px;font-weight:800}
+.phone-btn small{display:block;font-weight:500;opacity:.88}.wa{background:#00bd79}.quote{background:#0878e8}.service{background:#111820;border:1px solid #59616b}
+.pix{border:1px solid var(--gold);border-radius:16px;padding:13px;margin-top:13px;background:linear-gradient(145deg,#1a1706,#080a0d)}
+.pix h3{margin:0 0 8px;color:var(--gold);font-size:.95rem}.pixkey{font-size:.77rem;color:#d9e0e8;overflow-wrap:anywhere;margin:7px 0}
+.copy{width:100%;border:0;border-radius:10px;padding:10px;background:var(--gold);font-weight:850;color:#181300;margin-top:8px}
+.safe{font-size:.69rem;text-align:center;color:#c9d0d8;margin:9px 0 0}
+section{padding:48px 0}.section-title{text-align:center;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-.04em;margin:0 0 10px}.section-sub{text-align:center;color:var(--muted);max-width:650px;margin:0 auto 30px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:linear-gradient(145deg,#151c24,#0c1015);border:1px solid #27313c;border-radius:18px;padding:22px}
+.card .ico{font-size:1.55rem;color:var(--gold)}.card h3{margin:10px 0 6px}.card p{margin:0;color:#b8c2cd;font-size:.94rem}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}.compare .card{padding:26px}.bad{color:#ff6868}.good{color:#00d395}
+.price{display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;border:1px solid var(--gold);border-radius:22px;padding:28px;background:linear-gradient(110deg,#17170c,#0b0e12)}
+.price strong{font-size:clamp(2.6rem,6vw,4rem);color:var(--gold);letter-spacing:-.05em;white-space:nowrap}.price p{color:#c6ced7;margin:5px 0 0}
+.features{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:24px}
+.feature{text-align:center;border:1px solid #303a45;border-radius:14px;padding:15px 8px;color:#d5dce4;font-size:.86rem}.feature b{display:block;color:var(--gold);font-size:1.4rem;margin-bottom:5px}
+.faq{max-width:800px;margin:auto}.faq details{background:#111820;border:1px solid #293440;border-radius:13px;padding:16px 18px;margin:10px 0}.faq summary{cursor:pointer;font-weight:750}.faq p{color:#bac4ce;margin-bottom:0}
+.contact{text-align:center;padding:42px 20px;border:1px solid #28323d;border-radius:24px;background:radial-gradient(ellipse at center,#14251f,#0c1116 70%)}
+.contact h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 8px}.contact p{color:#c2ccd5;margin:0 0 22px}
+footer{padding:28px 0 38px;color:#9ba6b2;font-size:.86rem;text-align:center}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:#e9fff6;color:#062317;padding:11px 17px;border-radius:999px;font-weight:800;opacity:0;pointer-events:none;transition:.25s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:800px){.hero{grid-template-columns:1fr;text-align:center;padding:48px 0 35px}.lead{margin:auto}.actions,.hero-note{justify-content:center}.phone-area{margin-top:10px}.grid{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(3,1fr)}nav{gap:12px;font-size:.82rem}}
+@media(max-width:540px){.wrap{width:min(100% - 24px,1120px)}header{align-items:flex-start;gap:14px;flex-direction:column}nav{width:100%;overflow:auto;padding-bottom:4px}.grid,.compare{grid-template-columns:1fr}.price{grid-template-columns:1fr;text-align:center}.price .btn{justify-self:center}.features{grid-template-columns:repeat(2,1fr)}.hero{padding-top:38px}h1{font-size:3.1rem}.phone{max-width:340px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="#top">DAVID <span>ANDRADE</span></a>
+  <nav><a href="#beneficios">Benefícios</a><a href="#recursos">Recursos</a><a href="#preco">Investimento</a><a href="#duvidas">Dúvidas</a></nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div>
+    <div class="eyebrow">Cartão digital profissional</div>
+    <h1>Seu trabalho<br>merece ser <span>visto.</span></h1>
+    <p class="lead">Tudo o que você precisa para apresentar seus serviços, receber contatos e facilitar pagamentos — em um só lugar.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://wa.me/?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20cart%C3%A3o%20digital%20profissional." target="_blank" rel="noopener">✆ Fale conosco</a>
+      <a class="btn outline" href="#recursos">Conhecer recursos ↓</a>
+    </div>
+    <div class="hero-note"><span><i class="dot"></i> Compartilhe por link</span><span>✓ Sem mensalidade</span><span>✓ Acesso pelo celular</span></div>
+  </div>
+  <div class="phone-area">
+    <div class="phone">
+      <div class="status"><span>08:40</span><span>●●● ◉ 98%</span></div>
+      <div class="profile">
+        <img class="avatar" src="data:image/jpeg;base64,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" alt="Foto de perfil de David">
+        <h2>David Andrade Barbosa</h2>
+        <p>Desenvolvedor Web &amp; Sistemas</p><p>Sites · Automações · Soluções Digitais</p>
+      </div>
+      <a class="phone-btn wa" href="https://wa.me/?text=Ol%C3%A1%2C%20David!%20Gostaria%20de%20conversar." target="_blank" rel="noopener">◉ <span>WhatsApp<small>Fale comigo agora</small></span></a>
+      <a class="phone-btn quote" href="#contato">▣ <span>Solicitar orçamento<small>Tire suas dúvidas</small></span></a>
+      <a class="phone-btn service" href="#recursos">▧ <span>Fotos de serviços<small>Conheça meu trabalho</small></span></a>
+      <div class="pix">
+        <h3>◇ Pagamentos rápidos</h3>
+        <div style="font-weight:800">PIX</div>
+        <div class="pixkey">Chave Pix: <b id="pixKey">david.nubenk.pix@gmail.com</b></div>
+        <button class="copy" type="button" onclick="copyPix()">Copiar chave Pix</button>
+        <p class="safe">🔒 Pagamento via Pix. Confirme os dados no aplicativo do seu banco.</p>
+      </div>
+      <p style="text-align:center;color:#aeb8c4;font-size:.7rem;margin:14px 0 0">Acesse minhas redes e acompanhe meu trabalho</p>
+    </div>
+  </div>
+</section>
+
+<section id="beneficios">
+  <h2 class="section-title">Muito mais que um cartão</h2>
+  <p class="section-sub">Uma apresentação profissional que você envia em segundos e mantém sempre disponível.</p>
+  <div class="compare">
+    <article class="card"><div class="ico bad">✕</div><h3>O método antigo</h3><p>Cartões impressos têm custo recorrente, podem acabar e não permitem atualizar informações com facilidade.</p></article>
+    <article class="card"><div class="ico good">✓</div><h3>Com o cartão digital</h3><p>Envie para qualquer pessoa, compartilhe em massa, atualize seus dados e mantenha seu cartão sempre à mão.</p></article>
+  </div>
+</section>
+
+<section id="recursos">
+  <h2 class="section-title">Tudo em um só lugar</h2>
+  <p class="section-sub">Recursos pensados para apresentar seu trabalho e facilitar o contato com seus clientes.</p>
+  <div class="grid">
+    <article class="card"><div class="ico">🚀</div><h3>Site e redes sociais</h3><p>Links diretos para seus canais e presença profissional.</p></article>
+    <article class="card"><div class="ico">⚡</div><h3>Serviços e especialidades</h3><p>Apresente o que você faz de forma clara e organizada.</p></article>
+    <article class="card"><div class="ico">📍</div><h3>Localização e contato</h3><p>Facilite o acesso às suas informações de atendimento.</p></article>
+    <article class="card"><div class="ico">📷</div><h3>Galeria de fotos e vídeos</h3><p>Mostre seus trabalhos e resultados em uma galeria.</p></article>
+    <article class="card"><div class="ico">🗓️</div><h3>Agenda e horários</h3><p>Espaço preparado para informações de disponibilidade.</p></article>
+    <article class="card"><div class="ico">☆</div><h3>Avaliações</h3><p>Apresente depoimentos e avaliações de clientes.</p></article>
+  </div>
+</section>
+
+<section id="preco">
+  <div class="price">
+    <div><div class="eyebrow">Investimento único</div><strong>R$ 197</strong><p>Sem mensalidade. Pague uma única vez.</p></div>
+    <a class="btn gold" href="https://wa.me/?text=Ol%C3%A1%2C%20quero%20contratar%20meu%20cart%C3%A3o%20digital%20profissional." target="_blank" rel="noopener">Quero meu cartão →</a>
+  </div>
+  <div class="features">
+    <div class="feature"><b>🚀</b>Site e redes sociais</div><div class="feature"><b>⚡</b>Serviços</div><div class="feature"><b>📍</b>Localização</div><div class="feature"><b>📷</b>Galeria</div><div class="feature"><b>▦</b>Agenda</div><div class="feature"><b>☆</b>Avaliações</div>
+  </div>
+</section>
+
+<section id="duvidas">
+  <h2 class="section-title">Perguntas frequentes</h2>
+  <p class="section-sub">Respostas rápidas para você decidir com tranquilidade.</p>
+  <div class="faq">
+    <details><summary>Tem mensalidade?</summary><p>Não. A oferta apresentada é de investimento único de R$ 197.</p></details>
+    <details><summary>Como compartilho meu cartão?</summary><p>Você recebe um link e pode enviá-lo por WhatsApp, redes sociais ou qualquer aplicativo.</p></details>
+    <details><summary>Como faço o pagamento via Pix?</summary><p>Copie a chave Pix exibida no cartão e cole no aplicativo do seu banco. Confira o destinatário antes de confirmar.</p></details>
+    <details><summary>O QR Code antigo continua válido?</summary><p>Se a chave Pix foi alterada, gere um novo QR Code no seu banco. Não utilize um QR Code antigo sem confirmar que ele corresponde à chave atual.</p></details>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="contact">
+    <h2>Seu trabalho merece ser visto!</h2>
+    <p>Vamos colocar sua apresentação profissional no ar?</p>
+    <a class="btn primary" href="https://wa.me/?text=Ol%C3%A1%2C%20quero%20fazer%20meu%20cart%C3%A3o%20digital." target="_blank" rel="noopener">✆ Fale conosco</a>
+  </div>
+</section>
+</main>
+<footer>David Andrade Barbosa · Votorantim – SP<br><span style="color:#687582">Cartão Digital Profissional</span></footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite">Chave Pix copiada!</div>
+<script>
+async function copyPix(){
+ const key=document.getElementById('pixKey').textContent.trim();
+ try{
+  await navigator.clipboard.writeText(key);
+ }catch(e){
+  const t=document.createElement('textarea');t.value=key;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();
+ }
+ const toast=document.getElementById('toast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200);
+}
+</script>
+</body>
+</html>
